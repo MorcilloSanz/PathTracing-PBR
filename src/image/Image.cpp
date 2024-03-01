@@ -16,6 +16,10 @@ Image::Image(int _width, int _height)
 	data.resize(width * height * 4);
 }
 
+Image::Image(int _width, int _height, const std::vector<unsigned char>& _data) 
+	: width(_width), height(_height), data(_data) {
+}
+
 Image::Image(const Image& image) 
 	: width(image.width), height(image.height), data(image.data) {
 }

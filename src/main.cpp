@@ -1,11 +1,12 @@
 #include <iostream>
 
-#include "image/Image.h"
+#include "kernel/kernel.cuh"
+
+using namespace pt;
 
 int main() {
 
-	pt::Image image(400, 400);
-	image.setPixel(50, 50, pt::Color(255, 0, 0));
+	Image image = generateCudaImage(400, 400);
 	image.savePNG("C:/Users/alber/Desktop/test.png");
 
 	return 0;

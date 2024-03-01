@@ -8,10 +8,10 @@
 namespace pt
 {
 
-// Kernels
+// CUDA Kernels
 __global__ void kernelGenerateImage(unsigned char* image, int width, int height, int channels);
 
-// Backends
+// Backends: GPU and CPU comunication abstraction
 Image generateCudaImage(int width, int height);
 
 }

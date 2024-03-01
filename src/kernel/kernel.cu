@@ -41,24 +41,15 @@ Image generateCudaImage(int width, int height) {
     dim3 blockSize(16, 16);
     dim3 gridSize((width + blockSize.x - 1) / blockSize.x, (height + blockSize.y - 1) / blockSize.y);
 
-    kernelGenerateImage << <gridSize, blockSize >> > (gpuImage, width, height, channels);
+    kernelGenerateImage <<<gridSize, blockSize>>> (gpuImage, width, height, channels);
 
     // Copy GPU image to CPU image
-    unsigned char* cpuImage = (unsigned char*)malloc(width * height * channels * sizeof(unsigned char));
-    cudaMemcpy(cpuImage, gpuImage, width * height * channels * sizeof(unsigned char), cudaMemcpyDeviceToHost);
-
-    // Create image
-    std::vector<unsigned char> data;
-
-    size_t bufferSize = width * height * 4;
-    data.resize(bufferSize);
-    memcpy(&data[0], cpuImage, bufferSize);
-
-    Image image(width, height, data);
+    Image image(width, height);
+    size_t count = width * height * channels * sizeof(unsigned char);
+    cudaMemcpy(&image.getData()[0], gpuImage, count, cudaMemcpyDeviceToHost);
 
     // Free allocated memory
     cudaFree(gpuImage);
-    free(cpuImage);
 
     // Return image
     return image;

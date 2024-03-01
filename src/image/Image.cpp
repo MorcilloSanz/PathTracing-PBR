@@ -11,9 +11,11 @@ extern "C" {
 namespace pt
 {
 
-Image::Image(int _width, int _height) 
+Image::Image(int _width, int _height, bool reserveMemory) 
 	: width(_width), height(_height) {
-	data.resize(width * height * 4);
+	
+	if(reserveMemory) 
+		data.resize(width * height * 4);
 }
 
 Image::Image(int _width, int _height, const std::vector<unsigned char>& _data) 

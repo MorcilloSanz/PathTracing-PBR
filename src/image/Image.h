@@ -29,7 +29,7 @@ private:
 
 public:
 	Image() = default;
-	Image(int _width, int _height);
+	Image(int _width, int _height, bool reserveMemory = true);
 	Image(int _width, int _height, const std::vector<unsigned char>& _data);
 
 	Image(const Image& image);

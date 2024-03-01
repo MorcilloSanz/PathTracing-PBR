@@ -6,8 +6,8 @@ using namespace pt;
 
 int main() {
 
-	Image image = generateCudaImage(400, 400);
-	image.savePNG("C:/Users/alber/Desktop/test.png");
+	Image image = generateCudaImage(500, 500);
+	image.savePNG("C:/Users/alber/Desktop/img.png");
 
 	return 0;
 }

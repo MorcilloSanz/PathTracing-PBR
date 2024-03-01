@@ -1,6 +1,17 @@
 #pragma once
 
+#include "image/Image.h"
+
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
-__global__ void addVector(float* c, const float* a, const float* b);
+namespace pt
+{
+
+// Kernels
+__global__ void kernelGenerateImage(unsigned char* image, int width, int height, int channels);
+
+// Backends
+Image generateCudaImage(int width, int height);
+
+}

@@ -2,9 +2,11 @@ project(PathTracing-PBR)
 
 # Header Files
 set(CXX_HEADERS 
-	image/Image.h
 	vendor/stb_image.h
 	vendor/stb_image_write.h
+	image/Image.h
+	geometry/Vertex.h
+	geometry/Mesh.h
 )
 
 set(CUDA_HEADERS
@@ -20,6 +22,8 @@ set(CXX_SOURCES
 set(CUDA_SOURCES
 	kernel/kernel.cu
 )
+
+include_directories(vendor/glm)
 
 # Add CUDA executable
 add_executable(${PROJECT_NAME} ${CXX_SOURCES} ${CXX_HEADERS} ${CUDA_SOURCES} ${CUDA_HEADERS})
